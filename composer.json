@@ -2,7 +2,6 @@
     "name": "datashaman/job-pool",
     "description": "Beanstalk / redis / array-filter mashup",
     "require": {
-        "ulrichsg/getopt-php": "v2.1.0",
         "pda/pheanstalk": "3.0.0",
         "predis/predis": "0.8.5",
         "monolog/monolog": "1.10.0",

@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "1f62178040e832743d41c81e174b8280",
+    "hash": "8d6731ce8fa5b94434165063500724c0",
     "packages": [
         {
             "name": "behat/behat",
@@ -866,46 +866,6 @@
             "description": "Symfony Yaml Component",
             "homepage": "http://symfony.com",
             "time": "2014-07-08 12:21:33"
-        },
-        {
-            "name": "ulrichsg/getopt-php",
-            "version": "2.1.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/ulrichsg/getopt-php.git",
-                "reference": "97d15b99a0d5eab989140eef250eace9affa8525"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/ulrichsg/getopt-php/zipball/97d15b99a0d5eab989140eef250eace9affa8525",
-                "reference": "97d15b99a0d5eab989140eef250eace9affa8525",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.3.0"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "3.7.*"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-0": {
-                    "Ulrichsg\\": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Ulrich Schmidt-Goertz",
-                    "email": "ulrich@schmidt-goertz.de"
-                }
-            ],
-            "description": "Command line arguments parser for PHP 5.3",
-            "homepage": "http://ulrichsg.github.io/getopt-php",
-            "time": "2014-02-28 11:06:22"
         }
     ],
     "packages-dev": [
