@@ -1,12 +1,12 @@
 {
-    "name": "datashaman/yadayada",
-    "description": "Thing that does things with things.",
+    "name": "datashaman/job-pool",
+    "description": "Beanstalk / redis / array-filter mashup",
     "require": {
         "ulrichsg/getopt-php": "v2.1.0",
         "pda/pheanstalk": "3.0.0",
         "predis/predis": "0.8.5",
         "monolog/monolog": "1.10.0",
-        "datashaman/object-filter": "dev-master",
+        "datashaman/array-filter": "dev-master",
         "behat/behat": "~3.0.11"
     },
     "license": "MIT",

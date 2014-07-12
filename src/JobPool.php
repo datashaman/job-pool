@@ -11,7 +11,7 @@ class JobPool
         $this->prefix = $prefix;
         $this->pheanstalk = new Pheanstalk('127.0.0.1');
         $this->redis = new Client;
-        $this->objectFilter = new ObjectFilter;
+        $this->arrayFilter = new ArrayFilter;
     }
 
     public function pushData()
@@ -60,7 +60,7 @@ class JobPool
 
     public function checkFilter($data, $filter)
     {
-        return $this->objectFilter->checkFilter($data, $filter);
+        return $this->arrayFilter->checkFilter($data, $filter);
     }
 
     public function matchFilters($job)

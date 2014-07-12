@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "2b65873a85b8c49702cd02c0d654c48e",
+    "hash": "1f62178040e832743d41c81e174b8280",
     "packages": [
         {
             "name": "behat/behat",
@@ -186,21 +186,25 @@
             "time": "2014-05-15 22:08:22"
         },
         {
-            "name": "datashaman/object-filter",
+            "name": "datashaman/array-filter",
             "version": "dev-master",
             "source": {
                 "type": "git",
-                "url": "https://github.com/datashaman/object-filter.git",
-                "reference": "3978b7dea3a67cfdd8bb5b3438eff70b11ce5184"
+                "url": "https://github.com/datashaman/array-filter.git",
+                "reference": "da51fb93b0e40c2d96427766d55fb53a47bd0686"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/datashaman/object-filter/zipball/3978b7dea3a67cfdd8bb5b3438eff70b11ce5184",
-                "reference": "3978b7dea3a67cfdd8bb5b3438eff70b11ce5184",
+                "url": "https://api.github.com/repos/datashaman/array-filter/zipball/da51fb93b0e40c2d96427766d55fb53a47bd0686",
+                "reference": "da51fb93b0e40c2d96427766d55fb53a47bd0686",
                 "shasum": ""
             },
+            "require": {
+                "monolog/monolog": "1.*",
+                "php": ">=5.3.0"
+            },
             "require-dev": {
-                "phpunit/phpunit": "4.1.3"
+                "phpunit/phpunit": "4.*"
             },
             "type": "library",
             "autoload": {
@@ -208,6 +212,7 @@
                     "DataShaman\\": "src/"
                 }
             },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -217,12 +222,15 @@
                     "email": "marlinf@datashaman.com"
                 }
             ],
-            "description": "Match an object against a filter",
-            "support": {
-                "source": "https://github.com/datashaman/object-filter/tree/master",
-                "issues": "https://github.com/datashaman/object-filter/issues"
-            },
-            "time": "2014-07-11 12:14:15"
+            "description": "Match an array against a filter",
+            "homepage": "http://github.com/datashaman/array-filter",
+            "keywords": [
+                "array",
+                "filter",
+                "query",
+                "validation"
+            ],
+            "time": "2014-07-11 16:32:21"
         },
         {
             "name": "monolog/monolog",
@@ -1554,7 +1562,7 @@
     ],
     "minimum-stability": "stable",
     "stability-flags": {
-        "datashaman/object-filter": 20
+        "datashaman/array-filter": 20
     },
     "platform": [
 
