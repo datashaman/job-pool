@@ -2,6 +2,8 @@
 
 use Pheanstalk\Pheanstalk;
 use Predis\Client;
+use Monolog\Logger;
+use Monolog\Handler\TestHandler;
 
 class JobPool
 {
@@ -11,7 +13,11 @@ class JobPool
         $this->prefix = $prefix;
         $this->pheanstalk = new Pheanstalk('127.0.0.1');
         $this->redis = new Client;
-        $this->arrayFilter = new ArrayFilter;
+
+        $logger = new Logger($prefix);
+        $logger->pushHandler(new TestHandler);
+
+        $this->arrayFilter = new ArrayFilter($logger);
     }
 
     public function pushData()
