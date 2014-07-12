@@ -5,12 +5,14 @@ use DataShaman\JobPool;
 
 $pool = new JobPool;
 
-$pool->workerLoop('deliver', function ($job) use ($pool) {
+$pool->workerLoop('deliver', function ($job, $pool) {
     $data = $pool->getData($job);
 
     echo "Delivering: ".json_encode($data)."\n";
-    $data['type'] = 'report';
 
-    $pool->pushData($data);
+    $pool->pushData($data, [
+        'type' => 'report',
+    ]);
+
     $pool->deleteJob($job);
 });

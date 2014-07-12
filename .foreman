@@ -1,0 +1,1 @@
+concurrency: console=1,job-pool=1,deliverer=5,reporter=5

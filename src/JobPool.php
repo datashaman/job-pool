@@ -5,17 +5,19 @@ use Predis\Client;
 
 class JobPool
 {
-    public function __construct($prefix='job-pool')
+    public function __construct($tube='default', $prefix='job-pool')
     {
+        $this->tube = $tube;
         $this->prefix = $prefix;
         $this->pheanstalk = new Pheanstalk('127.0.0.1');
         $this->redis = new Client;
         $this->objectFilter = new ObjectFilter;
     }
 
-    public function pushData($data)
+    public function pushData()
     {
-        $this->putDataInTube('default', $data);
+        $data = call_user_func_array('array_merge', func_get_args());
+        $this->putDataInTube($this->tube, $data);
     }
 
     public function getData($job)
@@ -34,6 +36,11 @@ class JobPool
     public function deleteJob($job)
     {
         $this->pheanstalk->delete($job);
+    }
+
+    public function releaseJob($job)
+    {
+        $this->pheanstalk->release($job);
     }
 
     public function putJobInTube($tube, $job)
@@ -61,14 +68,17 @@ class JobPool
         $json = $job->getData();
         $data = json_decode($json, true);
 
+        $tubes = array();
+
         foreach ($this->getFilters() as $filterJson => $tube) {
             $filter = json_decode($filterJson, true);
             $match = $this->checkFilter($data, $filter);
             if ($match) {
-                return $tube;
+                $tubes[] = $tube;
             }
         }
-        return null;
+
+        return array_unique($tubes);
     }
 
     public function getFilters()
@@ -78,13 +88,15 @@ class JobPool
 
     public function dispatchLoop()
     {
-        $this->workerLoop('default', function ($job) {
-            $tube = $this->matchFilters($job);
+        $this->workerLoop($this->tube, function ($job) {
+            $tubes = $this->matchFilters($job);
 
-            if (empty($tube)) {
+            if (empty($tubes)) {
                 $this->releaseJob($job);
             } else {
-                $this->putJobInTube($tube, $job);
+                foreach ($tubes as $tube) {
+                    $this->putJobInTube($tube, $job);
+                }
                 $this->deleteJob($job);
             }
         });
@@ -93,7 +105,7 @@ class JobPool
     public function workerLoop($tube, $callback) {
         while (true) {
             $job = $this->reserveJob($tube);
-            call_user_func($callback, $job);
+            call_user_func($callback, $job, $this);
         }
     }
 
