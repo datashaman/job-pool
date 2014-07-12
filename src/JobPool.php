@@ -15,7 +15,7 @@ class JobPool
 
     public function pushData($data)
     {
-        $this->putDataInTube('inbox', $data);
+        $this->putDataInTube('default', $data);
     }
 
     public function getData($job)
@@ -26,8 +26,7 @@ class JobPool
     public function reserveJob($tube)
     {
         $job = $this->pheanstalk
-            ->watch($tube)
-            ->ignore('default')
+            ->watchOnly($tube)
             ->reserve();
         return $job;
     }
@@ -79,7 +78,7 @@ class JobPool
 
     public function dispatchLoop()
     {
-        $this->workerLoop('inbox', function ($job) {
+        $this->workerLoop('default', function ($job) {
             $tube = $this->matchFilters($job);
 
             if (empty($tube)) {
